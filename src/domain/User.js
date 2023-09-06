@@ -1,4 +1,5 @@
 const Reducer = require("../lib/Reducer")
+const hash = require('../lib/hasher')
 const UserWasCreated = require("../events/UserWasCreated")
 const UserWasDeleted = require("../events/UserWasDeleted")
 const UserWasUpdated = require("../events/UserWasUpdated")
@@ -75,5 +76,16 @@ module.exports = class User {
         id: HashChangeEvent(creationParams.email),
       }),
     ])
+    return user
+  }
+
+  delete() {
+    this.pushEvents([new UserWasDeleted()])
+    return this
+  }
+
+  update (data) {
+    this.pushEvents([new UserWasUpdated(data)])
+    return this
   }
 }
