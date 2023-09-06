@@ -22,9 +22,10 @@ module.exports = class User {
   constructor(persistedEvents = []) {
     this.#reducer = new Reducer({
       [UserWasCreated.eventName]: UserWasCreated.commit,
-      [UserWasDeleted.eventName]: UserWasCreated.commit,
+      [UserWasDeleted.eventName]: UserWasDeleted.commit,
       [UserWasUpdated.eventName]: UserWasUpdated.commit,
     })
+    // Object.defineProperty(User, 'collection', {writable: false, configurable: false, enumerable: true})
 
     if (persistedEvents > 0) {
       this.#persistedEvents = persistedEvents
@@ -73,7 +74,7 @@ module.exports = class User {
     user.pushEvents([
       new UserWasCreated({
         ...creationParams,
-        id: HashChangeEvent(creationParams.email),
+        id: hash(creationParams.email),
       }),
     ])
     return user

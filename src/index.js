@@ -17,3 +17,11 @@ function create(name, email, password) {
   db.save(user)
   return user
 }
+
+let Felipe = findById(hash("felipe.dev"))
+if (!Felipe) Felipe = create("Felipe Alves", "felipe@felipe.dev", "123mudar")
+
+console.log(Felipe.events)
+
+const Alves = Felipe.update({ name: "Alves" })
+console.log(Alves.events)
