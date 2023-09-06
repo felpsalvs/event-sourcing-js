@@ -38,6 +38,18 @@ module.exports = class User {
     }
   }
 
+  pushEvents(events = []) {
+    this.#pendingEvents = this.#pendingEvents.concat(events)
+    this.#updateInternalState()
+    return this
+  }
+
+  confirmEvents() {
+    this.#persistedEvents = this.#persistedEvents.concat(this.#pendingEvents)
+    this.#pendingEvents = []
+    return this
+  }
+
   get events() {
     return [...this.#persistedEvents, ...this.#pendingEvents]
   }
@@ -50,5 +62,18 @@ module.exports = class User {
   get state() {
     const currentState = this.#reducer.reduce(new User(), this.events)
     return { ...currentState }
+  }
+
+  static create(creationParams = null) {
+    if (!"name" in creationParams || !"email" in creationParams)
+      throw new Error("User.create: missing params")
+
+    const user = new User()
+    user.pushEvents([
+      new UserWasCreated({
+        ...creationParams,
+        id: HashChangeEvent(creationParams.email),
+      }),
+    ])
   }
 }
