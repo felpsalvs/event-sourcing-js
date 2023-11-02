@@ -1,38 +1,38 @@
-# Event Sourcing em JavaScript
+# Event Sourcing in JavaScript
 
-## Visão Geral
+## Overview
 
-Este repositório demonstra o conceito de Event Sourcing (ou "Registro de Eventos") em JavaScript. O Event Sourcing é uma abordagem arquitetural que se concentra em registrar todos os eventos que ocorrem em um sistema, em vez de apenas manter o estado atual. Isso permite reconstruir o estado do sistema a qualquer momento, auditar ações passadas e manter uma fonte única de verdade.
+This repository demonstrates the concept of Event Sourcing (or "Event Registration") in JavaScript. Event Sourcing is an architectural approach that focuses on recording all events that occur in a system, rather than just maintaining the current state. This allows you to reconstruct the system state at any time, audit past actions, and maintain a single source of truth.
 
-## Como Funciona
+## How it works
 
-- **Eventos:** Em vez de atualizar o estado diretamente, cada ação no sistema é registrada como um evento. Um evento é um objeto que descreve o que aconteceu. Exemplo: "Pedido Criado", "Produto Adicionado ao Carrinho", etc.
+- **Events:** Instead of updating the state directly, each action in the system is recorded as an event. An event is an object that describes what happened. Example: "Order Created", "Product Added to Cart", etc.
 
-- **Log de Eventos:** Todos os eventos são armazenados em um log de eventos, que é uma sequência imutável de eventos na ordem em que ocorreram.
+- **Event Log:** All events are stored in an event log, which is an immutable sequence of events in the order they occurred.
 
-- **Projeções:** Para obter o estado atual, os eventos são aplicados em ordem a uma projeção. Cada projeção pode representar uma visualização específica do estado do sistema.
+- **Projections:** To obtain the current state, events are applied in order to a projection. Each projection can represent a specific view of the system state.
 
-- **Reprodução de Eventos:** Como os eventos são armazenados em ordem cronológica, é possível reproduzi-los para reconstruir o estado atual do sistema a qualquer momento.
+- **Event Replay:** As events are stored in chronological order, it is possible to replay them to reconstruct the current state of the system at any time.
 
-## Por que Event Sourcing?
+## Why Event Sourcing?
 
-- **Auditoria:** Todos os eventos são registrados, o que facilita a auditoria e o rastreamento de todas as ações realizadas no sistema.
+- **Audit:** All events are recorded, which facilitates auditing and tracking of all actions carried out in the system.
 
-- **Recuperação de Falhas:** Em caso de falhas, é possível reconstruir o estado do sistema a partir dos eventos registrados.
+- **Failure Recovery:** In case of failures, it is possible to reconstruct the system state from the recorded events.
 
-- **Modelo de Domínio Complexo:** Útil quando o modelo de domínio do sistema é complexo e a evolução desse modelo é importante.
+- **Complex Domain Model:** Useful when the system's domain model is complex and the evolution of this model is important.
 
-- **Múltiplas Visualizações:** Permite criar várias visualizações do estado do sistema sem afetar o registro de eventos.
+- **Multiple Views:** Allows you to create multiple views of the system state without affecting the event log.
 
-## Exemplos de Uso
+## Usage Examples
 
-Este repositório inclui exemplos de implementações simples de Event Sourcing em JavaScript. Você encontrará:
+This repository includes examples of simple Event Sourcing implementations in JavaScript. You will find:
 
-- Um log de eventos simulado.
-- Projeções para construir estados a partir de eventos.
-- Exemplos de eventos e como aplicá-los.
+- A simulated event log.
+- Projections to build states from events.
+- Examples of events and how to apply them.
 
 
-## Contribuição
+## Contribution
 
-Sinta-se à vontade para contribuir com exemplos adicionais, aprimoramentos ou correções de bugs. Basta abrir uma [issue](https://github.com/felpsalvs/event-sourcing-js/issues) ou enviar um [pull request](https://github.com/felpsalvs/event-sourcing-js/pulls).
+Feel free to contribute additional examples, enhancements, or bug fixes. Just open an [issue](https://github.com/felpsalvs/event-sourcing-js/issues) or send a [pull request](https://github.com/felpsalvs/event-sourcing-js/pulls ).
